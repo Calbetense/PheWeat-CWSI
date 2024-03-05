@@ -2,9 +2,11 @@
 #!/bin/bash
 
 # Constants
-T1=0x11
-T2=0x15
-T3=0x09
+T1=0x09
+T2=0x11
+T3=0x15
+T4=0x26
+T5=0x35
 
         # Functions Declaration
 # Get Temperature from bytes recibed (Air temperature)
