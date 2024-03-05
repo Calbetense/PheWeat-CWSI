@@ -83,6 +83,12 @@ mlx2_o=$(getTo $T2)
 mlx3_a=$(getTa $T3)
 mlx3_o=$(getTo $T3)
 
+mlx4_a=$(getTa $T4)
+mlx4_o=$(getTo $T4)
+
+mlx5_a=$(getTa $T5)
+mlx5_o=$(getTo $T5)
+
 # Get temperatures
 ta1=$(processTa $mlx1_a $T1)
 #echo "ta1 $ta1 addr $T1"
@@ -90,15 +96,24 @@ ta2=$(processTa $mlx2_a $T2)
 #echo "ta2 " $ta2
 ta3=$(processTa $mlx3_a $T3)
 #echo "ta3 " $ta3
+ta4=$(processTa $mlx4_a $T4)
+#echo "ta3 " $ta3
+ta5=$(processTa $mlx5_a $T5)
+#echo "ta3 " $ta3
 to1=$(processTo $mlx1_o $T1)
 #echo "to1 " $to1
 to2=$(processTo $mlx2_o $T2)
 #echo "to2 " $to2
 to3=$(processTo $mlx3_o $T3)
 #echo "to3 " $to3
+to4=$(processTo $mlx4_o $T4)
+#echo "to3 " $to3
+to5=$(processTo $mlx5_o $T5)
+#echo "to3 " $to3
 
 # Calculate Index TODO: put sensors in real order (c, ul, ll) - Add "printf" to put the leading 0 of decimal
-cwsi=$(printf '%.2f\n' "$(bc -l <<< "($to1 - $to2)/($to3 - $to2 )")")
+cwsi1=$(printf '%.2f\n' "$(bc -l <<< "($to1 - $to2)/($to3 - $to2 )")")
+cwsi2=$(printf '%.2f\n' "$(bc -l <<< "($to1 - $to4)/($to5 - $to4 )")")
 
 # Send to Big Program
-echo "$cwsi,$ta1,$to1,$ta2,$ta3,$to3,$to2"
+echo "$cwsi1,$cwsi2,$ta1,$to1,$ta2,$ta3,$to3,$ta4,$to4,$ta5,$to5,$to2"
